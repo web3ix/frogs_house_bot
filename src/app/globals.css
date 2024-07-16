@@ -3,31 +3,83 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+	--foreground-rgb: 0, 0, 0;
+	--background-start-rgb: 214, 219, 220;
+	--background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+	:root {
+		--foreground-rgb: 255, 255, 255;
+		--background-start-rgb: 0, 0, 0;
+		--background-end-rgb: 0, 0, 0;
+	}
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+	color: rgb(var(--foreground-rgb));
+	background: linear-gradient(
+			to bottom,
+			transparent,
+			rgb(var(--background-end-rgb))
+		)
+		rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+	.text-balance {
+		text-wrap: balance;
+	}
+}
+
+.checking {
+	transition: width 2.1s;
+	animation: progress 2.1s forwards;
+}
+.checking2 {
+	transition: width 3s;
+	animation: progress 3s forwards;
+}
+.checking3 {
+	transition: width 2.5s;
+	animation: progress 2.5s forwards;
+}
+.checking4 {
+	transition: width 3.6s;
+	animation: progress 3.6s forwards;
+}
+
+.verified {
+	stroke: #ffffff;
+	animation: checked 2.1s forwards;
+}
+.verified2 {
+	stroke: #ffffff;
+	animation: checked 3s forwards;
+}
+.verified3 {
+	stroke: #ffffff;
+	animation: checked 2.5s forwards;
+}
+.verified4 {
+	stroke: #ffffff;
+	animation: checked 3.6s forwards;
+}
+
+@keyframes checked {
+	from {
+		stroke: #ffffff;
+	}
+	to {
+		stroke: #007aff;
+	}
+}
+
+@keyframes progress {
+	from {
+		width: 0%;
+	}
+	to {
+		width: 100%;
+	}
 }
