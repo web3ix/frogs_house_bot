@@ -354,9 +354,7 @@ export default function Home() {
 							<button
 								onClick={() => {
 									window.Telegram.WebApp.openTelegramLink(
-										`https://t.me/share/url?url=https://t.me/${BOT}?join=${
-											user.id ?? ""
-										}`
+										`https://t.me/share/url?url=https://t.me/+ZPTlK1NCdGBkYTFl`
 									);
 								}}
 								className="text-[#000000] bg-[#ffffff] backdrop-blur-[12px] w-full py-4 rounded-lg font-semibold"
