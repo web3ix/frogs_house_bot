@@ -29,14 +29,15 @@ export default function Home() {
 	const [activated, setActivated] = useState<MENU>(MENU.HOME);
 
 	useEffect(() => {
-		if (!window.Telegram?.WebApp?.initDataUnsafe?.user?.id) return;
+		if (!window.Telegram?.WebApp?.initDataUnsafe?.user?.id)
+			return setLoading(false);
 		axios
 			.get(`/api/user?user=${window.Telegram.WebApp.initDataUnsafe.user.id}`)
 			.then((res) => {
 				res.data.user && setUser(res.data.user);
 			})
 			.finally(() => setLoading(false));
-	}, []);
+	}, [window.Telegram?.WebApp]);
 
 	const checkAccount = useCallback(() => {
 		axios
