@@ -34,10 +34,13 @@ export default function Home() {
 		axios
 			.get(`/api/user?user=${window.Telegram.WebApp.initDataUnsafe.user.id}`)
 			.then((res) => {
-				res.data.user && setUser(res.data.user);
+				if (res.data.user) {
+					setUser(res.data.user);
+					setChecking(2);
+				}
 			})
 			.finally(() => setLoading(false));
-	}, [window.Telegram?.WebApp]);
+	}, []);
 
 	const checkAccount = useCallback(() => {
 		axios
@@ -46,7 +49,8 @@ export default function Home() {
 			})
 			.then((res) => {
 				res.data.user && setUser(res.data.user);
-			});
+			})
+			.finally(() => setChecking(1));
 	}, []);
 
 	return (
@@ -84,7 +88,6 @@ export default function Home() {
 									<button
 										onClick={() => {
 											checkAccount();
-											setChecking(1);
 										}}
 										className="text-[#ffffff] bg-[#007aff] backdrop-blur-[12px] font-[18px] w-full py-4 rounded-lg"
 									>
@@ -232,9 +235,7 @@ export default function Home() {
 								<div className="pb-4">Home for Telegram OG</div>
 								<span
 									onClick={() => {
-										window.Telegram.WebApp.openTelegramLink(
-											"https://t.me/+ZPTlK1NCdGBkYTFl"
-										);
+										window.Telegram.WebApp.openTelegramLink(COMMUNITY);
 									}}
 									className="bg-[#ffffff] py-2 px-3 rounded-3xl text-[#000000] text-[14px] font-semibold cursor-pointer "
 								>
@@ -353,7 +354,9 @@ export default function Home() {
 							<button
 								onClick={() => {
 									window.Telegram.WebApp.openTelegramLink(
-										`https://t.me/share/url?url=https://t.me/${BOT}?join=${user.id}`
+										`https://t.me/share/url?url=https://t.me/${BOT}?join=${
+											user.id ?? ""
+										}`
 									);
 								}}
 								className="text-[#000000] bg-[#ffffff] backdrop-blur-[12px] w-full py-4 rounded-lg font-semibold"
